@@ -10,8 +10,8 @@ describe('constructor', () => {
         expect(titanic.passengers).toStrictEqual([]);
     })
 
-    it('initialises startingPoint property as 0', () => {
+    it('initialises startingPort property as a string', () => {
         titanic = new Ship;
-        expect(titanic.startingPoint).toBe(0);
+        expect(typeof titanic.startingPort).toBe("string");
     })
 })

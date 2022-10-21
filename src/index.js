@@ -1,7 +1,7 @@
 class Ship {
     constructor(){
         this.passengers = [];
-        this.startingPoint = 0;
+        this.startingPort = "Bristol";
     }
 }
 
