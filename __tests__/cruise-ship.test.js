@@ -11,7 +11,7 @@ describe('constructor', () => {
     })
 
     it('initialises startingPort property as a string', () => {
-        titanic = new Ship;
-        expect(typeof titanic.startingPort).toBe("string");
+        titanic = new Ship("Bristol");
+        expect(titanic.startingPort.toLowerCase()).toBe("bristol");
     })
 })
