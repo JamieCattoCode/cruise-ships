@@ -4,10 +4,12 @@ class Ship
     {
         this.passengers = [];
         this.currentPort = startingPort;
+        this.previousPort = null;
     }
 
     setSail()
     {
+        this.previousPort = this.currentPort;
         this.currentPort = null;
     }
 

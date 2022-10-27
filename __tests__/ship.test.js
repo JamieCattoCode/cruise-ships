@@ -21,17 +21,32 @@ describe('constructor', () =>
         expect(titanic.currentPort).toBeInstanceOf(Object);
         expect(titanic.currentPort.name).toBe("Bristol");
     })
+
+    it('does not have a previous port', () => 
+    {
+        titanic = new Ship;
+        expect(titanic.previous).toBeFalsy();
+    })
 })
 
 describe('setSail', () => 
 {
-    it('removes value for port property', () => 
+    it('changes previousPort to the currentPort', () =>
+    {
+        bristol = new Port("Bristol");
+        titanic = new Ship(bristol);
+        titanic.setSail();
+        expect(titanic.previousPort).toBe(bristol);
+    })
+
+    it('removes value for currentPort property', () => 
     {
         bristol = new Port("Bristol");
         titanic = new Ship(bristol);
         titanic.setSail();
         expect(titanic.currentPort).toBeFalsy();
     })
+    
 })
 
 describe('dock', () =>
