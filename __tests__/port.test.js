@@ -7,7 +7,7 @@ describe('constructor', () =>
         expect(new Port("Bristol")).toBeInstanceOf(Object);
     })
 
-    it('initialises name property as a string passed through an argument', () =>
+    it('initialises name property as string argument', () =>
     {
         bristol = new Port("Bristol");
         expect(bristol.name).toBe("Bristol");

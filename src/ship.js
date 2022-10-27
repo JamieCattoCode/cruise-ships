@@ -3,12 +3,17 @@ class Ship
     constructor(startingPort)
     {
         this.passengers = [];
-        this.startingPort = startingPort;
+        this.currentPort = startingPort;
     }
 
     setSail()
     {
-        this.startingPort = null;
+        this.currentPort = null;
+    }
+
+    dock(newPort)
+    {
+        this.currentPort = newPort;
     }
 }
 

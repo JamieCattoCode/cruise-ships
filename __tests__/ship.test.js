@@ -1,4 +1,5 @@
 const Ship = require('../src/ship');
+const Port = require('../src/port');
 
 describe('constructor', () => 
 {
@@ -13,19 +14,34 @@ describe('constructor', () =>
         expect(titanic.passengers).toStrictEqual([]);
     })
 
-    it('initialises startingPort property as a string passed through an argument', () => 
+    it('initialises startingPort as an object', () => 
     {
-        titanic = new Ship("Bristol");
-        expect(titanic.startingPort).toBe("Bristol");
+        bristol = new Port("Bristol");
+        titanic = new Ship(bristol);
+        expect(titanic.currentPort).toBeInstanceOf(Object);
+        expect(titanic.currentPort.name).toBe("Bristol");
     })
 })
 
 describe('setSail', () => 
 {
-    it('removes value for startingPort property', () => 
+    it('removes value for port property', () => 
     {
-        titanic = new Ship("Bristol")
+        bristol = new Port("Bristol");
+        titanic = new Ship(bristol);
         titanic.setSail();
-        expect(titanic.startingPort).toBeFalsy();
+        expect(titanic.currentPort).toBeFalsy();
+    })
+})
+
+describe('dock', () =>
+{
+    it('sets Ship\'s port property to new port', () =>
+    {
+        bristol = new Port("Bristol");
+        galicia = new Port("Galicia")
+        titanic = new Ship(bristol);
+        titanic.dock(galicia);
+        expect(titanic.currentPort.name).toBe("Galicia");
     })
 })
