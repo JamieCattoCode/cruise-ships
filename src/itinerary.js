@@ -1,8 +1,12 @@
+const Port = require('../src/port');
+
 class Itinerary
 {
     constructor()
     {
-        this.ports = [];
+        const bristol = new Port("Bristol");
+        const galicia = new Port("Galicia");
+        this.ports = [bristol, galicia];
     }
 }
 

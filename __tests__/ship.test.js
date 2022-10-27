@@ -1,30 +1,44 @@
 const Ship = require('../src/ship');
 const Port = require('../src/port');
+const Itinerary = require('../src/itinerary');
 
 describe('constructor', () => 
 {
     it('returns an object', () => 
     {
-        expect(new Ship).toBeInstanceOf(Object);
+        itinerary1 = new Itinerary;
+        expect(new Ship(itinerary1)).toBeInstanceOf(Object);
     })
 
     it('initialises a passengers property as an empty array', () => 
     {
-        titanic = new Ship;
+        itinerary1 = new Itinerary;
+        titanic = new Ship(itinerary1);
         expect(titanic.passengers).toStrictEqual([]);
+    })
+
+    it('has an itinerary of ports as an array', () =>
+    {
+        itinerary1 = new Itinerary;
+        titanic = new Ship(itinerary1);
+        for (let i = 0; i < titanic.itinerary.length; i++)
+        {
+            expect(titanic.itinerary[i]).toBeInstanceOf(Object);
+        }
     })
 
     it('initialises startingPort as an object', () => 
     {
-        bristol = new Port("Bristol");
-        titanic = new Ship(bristol);
+        itinerary1 = new Itinerary;
+        titanic = new Ship(itinerary1);
         expect(titanic.currentPort).toBeInstanceOf(Object);
         expect(titanic.currentPort.name).toBe("Bristol");
     })
 
     it('does not have a previous port', () => 
     {
-        titanic = new Ship;
+        itinerary1 = new Itinerary;
+        titanic = new Ship(itinerary1);
         expect(titanic.previous).toBeFalsy();
     })
 })
@@ -33,30 +47,30 @@ describe('setSail', () =>
 {
     it('changes previousPort to the currentPort', () =>
     {
-        bristol = new Port("Bristol");
-        titanic = new Ship(bristol);
+        itinerary1 = new Itinerary;
+        titanic = new Ship(itinerary1);
         titanic.setSail();
-        expect(titanic.previousPort).toBe(bristol);
+        expect(titanic.previousPort).toBe(titanic.itinerary[0]);
     })
 
     it('removes value for currentPort property', () => 
     {
-        bristol = new Port("Bristol");
-        titanic = new Ship(bristol);
+        itinerary1 = new Itinerary;
+        titanic = new Ship(itinerary1);
         titanic.setSail();
         expect(titanic.currentPort).toBeFalsy();
     })
-    
+
 })
 
 describe('dock', () =>
 {
-    it('sets Ship\'s port property to new port', () =>
+    it('sets Ship\'s port property to next port', () =>
     {
-        bristol = new Port("Bristol");
-        galicia = new Port("Galicia")
-        titanic = new Ship(bristol);
-        titanic.dock(galicia);
+        itinerary1 = new Itinerary;
+        titanic = new Ship(itinerary1);
+        titanic.setSail();
+        titanic.dock();
         expect(titanic.currentPort.name).toBe("Galicia");
     })
 })
