@@ -9,6 +9,7 @@ describe('constructor', () =>
         itinerary1 = new Itinerary;
         titanic = new Ship(itinerary1);
     })
+    
     it('returns an object', () => 
     {
         expect(titanic).toBeInstanceOf(Object);

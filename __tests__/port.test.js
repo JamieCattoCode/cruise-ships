@@ -4,25 +4,34 @@ const Ship = require('../src/ship');
 
 describe('constructor', () =>
 {
+    beforeEach(() =>
+    {
+        bristol = new Port('Bristol');
+    })
+
     it('returns an object', () =>
     {
-        expect(new Port("Bristol")).toBeInstanceOf(Object);
+        expect(bristol).toBeInstanceOf(Object);
     })
 
     it('initialises name property as string argument', () =>
     {
-        bristol = new Port("Bristol");
-        expect(bristol.name).toBe("Bristol");
+        expect(bristol.name).toBe('Bristol');
     })
 })
 
 describe('addShip', () => 
 {
-    it('adds a ship to the ships property', () =>
+    beforeEach(() =>
     {
         itinerary1 = new Itinerary;
         bristol = new Port("Bristol");
         titanic = new Ship(itinerary1);
+    })
+
+
+    it('adds a ship to the ships property', () =>
+    {
         bristol.addShip(titanic);
         expect(bristol.ships).toStrictEqual([titanic]);
     })
@@ -30,11 +39,15 @@ describe('addShip', () =>
 
 describe('removeShip', () =>
 {
-    it('removes a ship from the ships property', () =>
+    beforeEach(() =>
     {
         itinerary1 = new Itinerary;
         bristol = new Port("Bristol");
         titanic = new Ship(itinerary1);
+    })
+
+    it('removes a ship from the ships property', () =>
+    {
         bristol.addShip(titanic);
         expect(bristol.ships).toStrictEqual([titanic]);
         bristol.removeShip(titanic);
