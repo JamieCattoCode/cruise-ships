@@ -61,10 +61,30 @@ describe('setSail', () =>
         expect(titanic.currentPort).toBeFalsy();
     })
 
+    it('cannot sail further than its itinerary', () => 
+    {
+        itinerary1 = new Itinerary;
+        titanic = new Ship(itinerary1);
+        titanic.setSail();
+        titanic.dock();
+
+        expect(() => titanic.setSail()).toThrowError('End of itinerary reached.')
+    })
+
 })
 
 describe('dock', () =>
 {
+    it('cannot dock if already docked', () => 
+    {
+        itinerary1 = new Itinerary;
+        titanic = new Ship(itinerary1);
+        titanic.setSail();
+        titanic.dock();
+
+        expect(() => titanic.dock()).toThrowError('Can only dock after setting sail.')
+    })
+
     it('sets Ship\'s port property to next port', () =>
     {
         itinerary1 = new Itinerary;

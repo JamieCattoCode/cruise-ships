@@ -1,3 +1,6 @@
+const ITINERARY_END_MSG = "End of itinerary reached.";
+const SETSAIL_NEEDED_MSG = "Can only dock after setting sail.";
+
 class Ship
 {
     constructor(itinerary)
@@ -9,24 +12,43 @@ class Ship
         this.__visits__ = 0;
     }
 
+    get itineraryExhausted()
+    {
+        if (this.__visits__ >= this.itinerary.length)
+        {
+            return true;
+        }
+        return false;
+    }
+
     setSail()
     {
-        this.previousPort = this.currentPort;
-        this.currentPort = null;
         this.__visits__ += 1;
+
+        if (this.itineraryExhausted)
+        {
+            throw new Error(ITINERARY_END_MSG);
+        }
+        else
+        {
+            this.previousPort = this.currentPort;
+            this.currentPort = null;
+        }
     }
 
     dock()
     {
-        if (this.currentPort === null)
+        if(this.currentPort !== null)
         {
-            this.currentPort = this.itinerary[this.__visits__];
+            throw new Error(SETSAIL_NEEDED_MSG);
         }
         else
         {
-            throw new Error("Can only dock after setting sail.")
+            this.currentPort = this.itinerary[this.__visits__];
         }
+        
     }
+
 }
 
 module.exports = Ship;
