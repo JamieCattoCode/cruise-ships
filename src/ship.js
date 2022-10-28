@@ -10,6 +10,8 @@ class Ship
         this.currentPort = this.itinerary[0];
         this.previousPort = null;
         this.__visits__ = 0;
+
+        this.currentPort.addShip(this);
     }
 
     get itineraryExhausted()
@@ -31,6 +33,7 @@ class Ship
         }
         else
         {
+            this.currentPort.removeShip(this);
             this.previousPort = this.currentPort;
             this.currentPort = null;
         }
@@ -45,6 +48,7 @@ class Ship
         else
         {
             this.currentPort = this.itinerary[this.__visits__];
+            this.currentPort.addShip(this);
         }
         
     }

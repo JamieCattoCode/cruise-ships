@@ -41,6 +41,13 @@ describe('constructor', () =>
         titanic = new Ship(itinerary1);
         expect(titanic.previous).toBeFalsy();
     })
+
+    it('gets added to port on instantiation', () =>
+    {
+        itinerary1 = new Itinerary;
+        titanic = new Ship(itinerary1);
+        expect(titanic.currentPort.ships).toContain(titanic);
+    })
 })
 
 describe('setSail', () => 
@@ -71,6 +78,16 @@ describe('setSail', () =>
         expect(() => titanic.setSail()).toThrowError('End of itinerary reached.')
     })
 
+    it('previous currentPort does not contain the ship', () =>
+    {
+        itinerary1 = new Itinerary;
+        titanic = new Ship(itinerary1);
+        titanic.setSail();
+        titanic.dock();
+
+        expect(titanic.itinerary[0].ships).not.toContain(titanic);
+    })
+
 })
 
 describe('dock', () =>
@@ -92,5 +109,6 @@ describe('dock', () =>
         titanic.setSail();
         titanic.dock();
         expect(titanic.currentPort.name).toBe("Galicia");
+        expect(titanic.currentPort.ships).toContain(titanic);
     })
 })
