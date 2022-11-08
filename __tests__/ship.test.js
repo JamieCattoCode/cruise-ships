@@ -6,10 +6,11 @@ describe('constructor', () =>
 {
     beforeEach(() =>
     {
-        itinerary1 = new Itinerary;
+        bristol = new Port("Bristol");
+        galicia = new Port("Galicia");
+        itinerary1 = new Itinerary([bristol, galicia]);
         titanic = new Ship(itinerary1);
     })
-    
     it('returns an object', () => 
     {
         expect(titanic).toBeInstanceOf(Object);
@@ -49,7 +50,9 @@ describe('setSail', () =>
 {
     beforeEach(() =>
     {
-        itinerary1 = new Itinerary;
+        bristol = new Port("Bristol");
+        galicia = new Port("Galicia");
+        itinerary1 = new Itinerary([bristol, galicia]);
         titanic = new Ship(itinerary1);
         titanic.setSail();
     })
@@ -82,7 +85,9 @@ describe('dock', () =>
 {
     beforeEach(() =>
     {
-        itinerary1 = new Itinerary;
+        bristol = new Port("Bristol");
+        galicia = new Port("Galicia");
+        itinerary1 = new Itinerary([bristol, galicia]);
         titanic = new Ship(itinerary1);
         titanic.setSail();
         titanic.dock();

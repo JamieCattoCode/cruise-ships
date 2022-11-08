@@ -1,6 +1,4 @@
-const Itinerary = require('../src/itinerary');
 const Port = require('../src/port');
-const Ship = require('../src/ship');
 
 describe('constructor', () =>
 {
@@ -24,16 +22,15 @@ describe('addShip', () =>
 {
     beforeEach(() =>
     {
-        itinerary1 = new Itinerary;
-        bristol = new Port("Bristol");
-        titanic = new Ship(itinerary1);
+        malaga = new Port("Malaga");
+        titanic = jest.fn();
     })
 
 
     it('adds a ship to the ships property', () =>
     {
-        bristol.addShip(titanic);
-        expect(bristol.ships).toStrictEqual([titanic]);
+        malaga.addShip(titanic);
+        expect(malaga.ships).toStrictEqual([titanic]);
     })
 })
 
@@ -41,16 +38,15 @@ describe('removeShip', () =>
 {
     beforeEach(() =>
     {
-        itinerary1 = new Itinerary;
-        bristol = new Port("Bristol");
-        titanic = new Ship(itinerary1);
+        malaga = new Port("Malaga");
+        titanic = jest.fn();
     })
 
     it('removes a ship from the ships property', () =>
     {
-        bristol.addShip(titanic);
-        expect(bristol.ships).toStrictEqual([titanic]);
-        bristol.removeShip(titanic);
-        expect(bristol.ships).toStrictEqual([]);
+        malaga.addShip(titanic);
+        expect(malaga.ships).toStrictEqual([titanic]);
+        malaga.removeShip(titanic);
+        expect(malaga.ships).toStrictEqual([]);
     })
 })

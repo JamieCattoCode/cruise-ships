@@ -2,14 +2,19 @@ const Itinerary = require('../src/itinerary');
 
 describe('constructor', () => 
 {
+    beforeEach(() => 
+    {
+        port1 = jest.fn();
+        port2 = jest.fn();
+        itinerary = new Itinerary([port1, port2])
+    })
     it('creates an instance of an object', () => 
     {
-        expect(new Itinerary).toBeInstanceOf(Object);
+        expect(itinerary).toBeInstanceOf(Object);
     })
 
     it('contains a ports property as an array', () => 
     {
-        itinerary25 = new Itinerary;
-        expect(itinerary25.ports).toBeInstanceOf(Array);
+        expect(itinerary.ports).toBeInstanceOf(Array);
     })
 })
