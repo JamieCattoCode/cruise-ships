@@ -1,16 +1,32 @@
 const Ship = require('../src/ship');
-const Port = require('../src/port');
-const Itinerary = require('../src/itinerary');
+
+beforeEach(() =>
+{
+    function Port(name)
+    {
+        this.name = name;
+        this.ships = [];
+    };
+
+    Port.prototype.addShip = function(ship)
+    {
+        this.ships.push(ship);
+    }
+
+    Port.prototype.removeShip = function(ship)
+    {
+        this.ships.splice(this.ships.indexOf(ship), 1);
+    }
+
+    bristol = new Port("Bristol");
+    galicia = new Port("Galicia");
+    itinerary1 = {ports: [bristol, galicia]};
+    titanic = new Ship(itinerary1);
+})
 
 describe('constructor', () => 
 {
-    beforeEach(() =>
-    {
-        bristol = new Port("Bristol");
-        galicia = new Port("Galicia");
-        itinerary1 = new Itinerary([bristol, galicia]);
-        titanic = new Ship(itinerary1);
-    })
+
     it('returns an object', () => 
     {
         expect(titanic).toBeInstanceOf(Object);
@@ -50,10 +66,6 @@ describe('setSail', () =>
 {
     beforeEach(() =>
     {
-        bristol = new Port("Bristol");
-        galicia = new Port("Galicia");
-        itinerary1 = new Itinerary([bristol, galicia]);
-        titanic = new Ship(itinerary1);
         titanic.setSail();
     })
 
@@ -80,15 +92,11 @@ describe('setSail', () =>
     })
 
 })
-
+    
 describe('dock', () =>
 {
     beforeEach(() =>
     {
-        bristol = new Port("Bristol");
-        galicia = new Port("Galicia");
-        itinerary1 = new Itinerary([bristol, galicia]);
-        titanic = new Ship(itinerary1);
         titanic.setSail();
         titanic.dock();
     })
@@ -103,4 +111,5 @@ describe('dock', () =>
         expect(titanic.currentPort.name).toBe("Galicia");
         expect(titanic.currentPort.ships).toContain(titanic);
     })
+
 })
